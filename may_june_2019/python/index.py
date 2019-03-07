@@ -1,4 +1,5 @@
 import itertools
+from statistics import mean
 
 
 class Row(object):
@@ -38,7 +39,32 @@ def number_late_arrivals(bus_data):
         for i, bus_time in enumerate(day.bus_punctuality, start=0):
             if bus_time < 0:
                 number_late_arrivals[i] += 1
-    return number_late_arrivals
+    return number_late_arrivals.index(max(number_late_arrivals))
 
 
-print(number_late_arrivals(default_data))
+def avarge_minutes_late_per_bus(bus_data):
+    avarge_number_of_minutes_late = []
+    for bus_number in range(len(bus_data[0].bus_punctuality)):
+        lateness = []
+        for bus in bus_data:
+            lateness.append(bus.bus_punctuality[bus_number] * -1)
+        avarge_number_of_minutes_late.append(mean(lateness))
+    return avarge_number_of_minutes_late
+
+
+def avarge_minutes_late_per_late_bus(bus_data):
+    avarge_number_of_minutes_late = []
+    for bus_number in range(len(bus_data[0].bus_punctuality)):
+        lateness = []
+        for bus in bus_data:
+            bus_latness = bus.bus_punctuality[bus_number] * -1
+            if bus_latness > 0:
+                lateness.append(bus_latness)
+        if lateness == []:
+            avarge_number_of_minutes_late.append(0)
+        else:
+            avarge_number_of_minutes_late.append(mean(lateness))
+    return avarge_number_of_minutes_late
+
+
+print(avarge_minutes_late_per_late_bus(default_data))

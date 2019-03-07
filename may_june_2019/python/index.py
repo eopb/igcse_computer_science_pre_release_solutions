@@ -34,12 +34,11 @@ default_data = [
 def number_late_arrivals(bus_data):
     number_late_arrivals = list(
         itertools.repeat(0, len(bus_data[0].bus_punctuality)))
-    print(number_late_arrivals)
     for day in bus_data:
         for i, bus_time in enumerate(day.bus_punctuality, start=0):
             if bus_time < 0:
                 number_late_arrivals[i] += 1
-    print(number_late_arrivals)
+    return number_late_arrivals
 
 
 print(number_late_arrivals(default_data))

@@ -31,6 +31,8 @@ default_data = [
     Row(date="Fri4", bus_punctuality=[-2, 0, -2, 0,  0, -5]),
 ]
 
+# think this is not correct
+
 
 def number_late_arrivals(bus_data):
     number_late_arrivals = list(
@@ -46,8 +48,8 @@ def avarge_minutes_late_per_bus(bus_data):
     avarge_number_of_minutes_late = []
     for bus_number in range(len(bus_data[0].bus_punctuality)):
         lateness = []
-        for bus in bus_data:
-            lateness.append(bus.bus_punctuality[bus_number] * -1)
+        for day in bus_data:
+            lateness.append(day.bus_punctuality[bus_number] * -1)
         avarge_number_of_minutes_late.append(mean(lateness))
     return avarge_number_of_minutes_late
 
@@ -56,8 +58,8 @@ def avarge_minutes_late_per_late_bus(bus_data):
     avarge_number_of_minutes_late = []
     for bus_number in range(len(bus_data[0].bus_punctuality)):
         lateness = []
-        for bus in bus_data:
-            bus_latness = bus.bus_punctuality[bus_number] * -1
+        for day in bus_data:
+            bus_latness = day.bus_punctuality[bus_number] * -1
             if bus_latness > 0:
                 lateness.append(bus_latness)
         if lateness == []:
@@ -67,4 +69,15 @@ def avarge_minutes_late_per_late_bus(bus_data):
     return avarge_number_of_minutes_late
 
 
-print(avarge_minutes_late_per_late_bus(default_data))
+def bus_route_most_days_late(bus_data):
+    number_of_times_late = []
+    for bus_number in range(len(bus_data[0].bus_punctuality)):
+        times_late = 0
+        for day in bus_data:
+            if day.bus_punctuality[bus_number] < 0:
+                times_late += 1
+        number_of_times_late.append(times_late)
+    return number_of_times_late.index(max(number_of_times_late))
+
+
+print(bus_route_most_days_late(default_data))

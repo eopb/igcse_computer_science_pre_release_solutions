@@ -80,4 +80,22 @@ def bus_route_most_days_late(bus_data):
     return number_of_times_late.index(max(number_of_times_late))
 
 
-print(bus_route_most_days_late(default_data))
+def specific_day(bus_data):
+    while True:
+        input_var = input("What day do you want data on: ")
+        for day in bus_data:
+            if day.date == input_var:
+                return day
+        print("Error no data for that date")
+
+
+def number_of_busses_late_for_day(bus_data):
+    day = specific_day(bus_data)
+    number_late = 0
+    for bus_punctuality in day.bus_punctuality:
+        if bus_punctuality < 0:
+            number_late += 1
+    return number_late
+
+
+print(number_of_busses_late_for_day(default_data))

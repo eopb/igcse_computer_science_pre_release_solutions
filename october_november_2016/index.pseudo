@@ -1,0 +1,27 @@
+// Task 3
+
+Names <- []
+FOR 1 TO 4
+    PRINT "Please input candidate name"
+    INPUT Name
+    Names.PUSH(Name)
+NEXT
+for (Name, NameIndex) in Names.ENUMERATE
+    PRINT "Candidate " + Name + " is number " + (NameIndex + 1)
+VotesFor1, VotesFor2, VotesFor3, VotesFor4 = 0
+loop from 1 to 30
+    PRINT "Please input the number for who you are voting for: "
+    INPUT InputNum
+    CASE InputNum OF
+        "1" : VotesFor1 = VotesFor1 + 1; 
+              PRINT "one more vote for" + Names[0]
+        "2" : VotesFor2 = VotesFor2 + 2; 
+              PRINT "one more vote for" + Names[1]
+        "3" : VotesFor3 = VotesFor3 + 3; 
+              PRINT "one more vote for" + Names[2]
+        "4" : VotesFor4 = VotesFor4 + 4; 
+              PRINT "one more vote for" + Names[3]
+        "exit" -> BREAK
+        OTHERWISE -> PRINT "invalid vote"
+end loop 
+

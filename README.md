@@ -1,2 +1,3 @@
-# cambridge_igcse_computer_science_pre_release_materials_solutions
-cambridge_igcse_computer_science_pre_release_materials_solutions
+# Cambridge IGCSE Computer Science pre-release materials solutions.
+
+Pre-release material practice that I did before the exam.
